@@ -5,5 +5,5 @@ class EstudanteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Estudante
-        fields = ('name', 'telefone' ,'course','create_at','update_at')
+        fields = ('id','nome', 'telefone' ,'curso','create_at','update_at')
 

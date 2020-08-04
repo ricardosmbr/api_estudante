@@ -35,6 +35,7 @@ def AdicionarEstudanteView(request):
 		else:
 			dados = request.data
 		obj = Estudante.objects.all()
+
 		#verifica json simples ou lista
 		if (isinstance(request.data, dict)):
 			serializer = EstudanteSerializer(data=dados)
@@ -43,12 +44,14 @@ def AdicionarEstudanteView(request):
 			else:
 				texto = str(serializer.errors)
 				print(texto)
+				return Response(serializer.errors)
+
 		else:
 			serializer = EstudanteSerializer(data=dados,many=True)
 			if serializer.is_valid():
 				serializer.save()
 			else:
 				texto = str(serializer.errors)	
-				print(texto)		
+				return Response(serializer.errors)		
 
 	return Response(serializer.data)

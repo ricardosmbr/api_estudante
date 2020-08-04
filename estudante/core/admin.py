@@ -3,8 +3,8 @@ from core.models import Estudante
 
 class EstudanteAdmin(admin.ModelAdmin):
 
-    list_display = ('name','telefone','course','create_at','update_at')
-    search_fields = ['name']
+    list_display = ('nome','telefone','curso','create_at','update_at')
+    search_fields = ['nome']
 
 
 admin.site.register(Estudante,EstudanteAdmin)
