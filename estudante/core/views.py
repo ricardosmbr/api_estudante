@@ -12,6 +12,7 @@ def home(request):
 	base = "http://127.0.0.1:8000/"
 	urls['Listar Estudantes'] = base+"estudante/"
 	urls['Adicionar Estudantes'] = base+"addestudante/"
+	urls['Autera Estudantes'] = base+"autestudante/"
 	return Response(urls)
 
 @api_view(['GET'])
@@ -34,7 +35,6 @@ def AdicionarEstudanteView(request):
 			dados = eval(request.data)
 		else:
 			dados = request.data
-		obj = Estudante.objects.all()
 
 		#verifica json simples ou lista
 		if (isinstance(request.data, dict)):
@@ -42,8 +42,6 @@ def AdicionarEstudanteView(request):
 			if serializer.is_valid():
 				serializer.save()
 			else:
-				texto = str(serializer.errors)
-				print(texto)
 				return Response(serializer.errors)
 
 		else:
@@ -51,7 +49,27 @@ def AdicionarEstudanteView(request):
 			if serializer.is_valid():
 				serializer.save()
 			else:
-				texto = str(serializer.errors)	
 				return Response(serializer.errors)		
+
+	return Response(serializer.data)
+
+@api_view(['POST'])
+def AuterarEstudanteView(request):
+	if request.method == 'POST':
+		#verifica json simples ou lista
+		if (isinstance(request.data, list)):
+			return Response('formato json: invalido ')
+		dados = request.data
+		ide = request.data['id']
+		print("id ", ide)
+		try:
+			obj = Estudante.objects.get(pk=ide)
+		except Exception as e:
+			return Response('id: invalido ')		
+		serializer = EstudanteSerializer(obj,data=dados)
+		if serializer.is_valid():
+			serializer.save()
+		else:
+			return Response(serializer.errors)
 
 	return Response(serializer.data)

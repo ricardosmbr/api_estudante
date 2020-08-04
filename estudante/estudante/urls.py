@@ -21,5 +21,6 @@ urlpatterns = [
 	path('',views.home , name='home'),
 	path('estudante/', views.ListarEstudanteView, name='estudante'),
     path('addestudante/', views.AdicionarEstudanteView, name='addestudante'),
+    path('autestudante/', views. AuterarEstudanteView, name='autestudante'),
     path('admin/', admin.site.urls),
 ]
