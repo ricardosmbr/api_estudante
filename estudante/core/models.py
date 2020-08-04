@@ -1,6 +1,6 @@
 from django.db import models
 
-class estudante(models.Model):
+class Estudante(models.Model):
 	
 	name = models.CharField('Nome',max_length=100)
 	telefone = models.CharField('Telefone',max_length=100)
