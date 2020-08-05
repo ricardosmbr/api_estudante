@@ -31,3 +31,18 @@ Visual studio >= 2014
 
 ## consumindo a API
 - http://localhost:8000/
+
+## detalhes da api apenas json
+- endpoint: http://127.0.0.1:8000/estudante
+lista estudantes cadastrados
+- endpoint: http://127.0.0.1:8000/addestudante
+adiciona estudantes "um ou varios ao mesmo tempo"
+- endpoint: http://127.0.0.1:8000/autestudante
+autera estudante "apenas um por vez"
+- endpoint: http://127.0.0.1:8000/apaestudante
+remove estudante "apenas um por vez"
+- endpoint: http://127.0.0.1:8000/estudante
+filtra estudante
+
+## OBS
+- pode ser usudo com token mas esta desabilidatado
