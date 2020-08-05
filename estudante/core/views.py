@@ -14,6 +14,7 @@ def home(request):
 	urls['Adicionar Estudantes'] = base+"addestudante/"
 	urls['Autera Estudantes'] = base+"autestudante/"
 	urls['Apaga Estudantes'] = base+"apaestudante/"
+	urls['Filtra Estudantes'] = base+"filestudante/"
 	return Response(urls)
 
 @api_view(['GET'])
@@ -61,9 +62,8 @@ def AuterarEstudanteView(request):
 		if (isinstance(request.data, list)):
 			return Response('formato json: invalido ')
 		dados = request.data
-		ide = request.data['id']
-		print("id ", ide)
 		try:
+			ide = request.data['id']
 			obj = Estudante.objects.get(pk=ide)
 		except Exception as e:
 			return Response('id: invalido ')		
@@ -93,3 +93,19 @@ def ApagaEstudanteView(request):
 			return Response('id: invalido ')
 
 	return Response('id: apagado ')
+
+@api_view(['POST'])
+def FiltrarEstudanteView(request):
+	if request.method == 'POST':
+		obj = Estudante.objects.all()
+		dados = request.data
+		for item in dados:
+			obj = None
+			if(item == "id"):
+				obj = Estudante.objects.filter(pk=dados["id"])
+			if(item == "nome"):
+				obj = Estudante.objects.filter(nome__icontains=dados["nome"])
+		if(obj == None):
+			return Response("nenhum registro encontrado")
+		serializer = EstudanteSerializer(obj, many=True)
+		return Response(serializer.data)

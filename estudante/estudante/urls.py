@@ -23,5 +23,6 @@ urlpatterns = [
     path('addestudante/', views.AdicionarEstudanteView, name='addestudante'),
     path('autestudante/', views.AuterarEstudanteView, name='autestudante'),
     path('apaestudante/', views.ApagaEstudanteView, name='apaestudante'),
+    path('filestudante/', views.FiltrarEstudanteView, name='filestudante'),
     path('admin/', admin.site.urls),
 ]

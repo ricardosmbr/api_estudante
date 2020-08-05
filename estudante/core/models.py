@@ -12,9 +12,6 @@ class Estudante(models.Model):
 		'Atualizado em',auto_now=True, null=True, blank=True
 	)	
 
-	def __str__(self):
-		return self.nome
-
 	class Meta:
 		verbose_name = 'Estudante'
 		verbose_name_plural = 'Estudantes'
