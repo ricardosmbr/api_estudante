@@ -21,6 +21,7 @@ urlpatterns = [
 	path('',views.home , name='home'),
 	path('estudante/', views.ListarEstudanteView, name='estudante'),
     path('addestudante/', views.AdicionarEstudanteView, name='addestudante'),
-    path('autestudante/', views. AuterarEstudanteView, name='autestudante'),
+    path('autestudante/', views.AuterarEstudanteView, name='autestudante'),
+    path('apaestudante/', views.ApagaEstudanteView, name='apaestudante'),
     path('admin/', admin.site.urls),
 ]

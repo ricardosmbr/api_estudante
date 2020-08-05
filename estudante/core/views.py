@@ -13,6 +13,7 @@ def home(request):
 	urls['Listar Estudantes'] = base+"estudante/"
 	urls['Adicionar Estudantes'] = base+"addestudante/"
 	urls['Autera Estudantes'] = base+"autestudante/"
+	urls['Apaga Estudantes'] = base+"apaestudante/"
 	return Response(urls)
 
 @api_view(['GET'])
@@ -73,3 +74,22 @@ def AuterarEstudanteView(request):
 			return Response(serializer.errors)
 
 	return Response(serializer.data)
+
+@api_view(['POST'])
+def ApagaEstudanteView(request):
+	if request.method == 'POST':
+		#verifica json simples ou lista
+		if (isinstance(request.data, list)):
+			return Response('formato json: invalido ')
+		dados = request.data
+		try:
+			ide = request.data['id']
+			obj = Estudante.objects.get(pk=ide)
+		except Exception as e:
+			return Response('id: invalido ')		
+		try:
+			obj.delete
+		except Exception as e:
+			return Response('id: invalido ')
+
+	return Response('id: apagado ')
