@@ -45,4 +45,4 @@ remove estudante "apenas um por vez"
 filtra estudante
 
 ## OBS
-- pode ser usudo com token mas esta desabilidatado
+- pode ser usado com token mas esta desabilidatado
